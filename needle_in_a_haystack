@@ -39,19 +39,18 @@ EOF
 build_haystack()
 {
     ROOT=$(mktemp --tmpdir=. -d)
-    pushd ${ROOT}
+    pushd ${ROOT} &> /dev/null
     for i in {1..100}
     do
-	mktemp --tmpdir=. -d
+	mktemp --tmpdir=. -d &> /dev/null
 	for i in tmp*
 	do
-	    pushd ${i}
-	    mktemp --tmpdir=. -d
-	    popd
+	    pushd ${i} &> /dev/null
+	    mktemp --tmpdir=. -d &> /dev/null
+	    popd &> /dev/null
 	done
     done
-    popd
-    echo "built"
+    popd &> /dev/null
 }
 
 insert_needles()
