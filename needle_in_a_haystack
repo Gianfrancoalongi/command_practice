@@ -13,13 +13,11 @@ show_description()
 {
 cat <<EOF 
     = Needle in a haystack =
-
     This exercise will create a deep directory structure with many files.  
     Your goal is to find the files which match some specific criteria.
     The criteria will be given to you at the end of this text.
 
     = Criterias =
-
     File 1:  not writeable
 	     has abba in the name
              size ~ 10 B
@@ -33,6 +31,7 @@ cat <<EOF
 
     File 4:  contains the name of the file 
 
+    = Setup progress = 
 EOF
 }
 
@@ -40,22 +39,46 @@ build_haystack()
 {
     ROOT=$(mktemp --tmpdir=. -d)
     pushd ${ROOT} &> /dev/null
-    for i in {1..100}
+    for i in {1..10}
     do
+	mktemp --tmpdir=. &> /dev/null
 	mktemp --tmpdir=. -d &> /dev/null
-	for i in tmp*
+	for i in tmp*/
 	do
 	    pushd ${i} &> /dev/null
-	    mktemp --tmpdir=. -d &> /dev/null
+	    mktemp --tmpdir=. &> /dev/null
+	    NR=$(mktemp --tmpdir=. -d)
+	    for i in {1..10}
+	    do
+		mktemp --tmpdir=${NR} &> /dev/null
+	    done
 	    popd &> /dev/null
 	done
     done
     popd &> /dev/null
+    echo "   * Built haystack"
 }
 
 insert_needles()
 {
-    echo "needles inserted"
+    for i in {1..4}
+    do
+	pushd ${ROOT} &> /dev/null
+	DEPTH=$((${RANDOM} % 2 ))
+	for((i=0;i<${DEPTH};i++))
+	do
+	    DIRS=( tmp.*/ )
+	    I=$(( ${RANDOM} % ${#DIRS[*]} ))
+	    pushd ${DIRS[${I}]} &> /dev/null
+	done
+	echo "NEEDLING $(pwd)"
+	for((i=0;i>${DEPTH};i++))
+	do
+	    popd &> /dev/null
+	done
+	popd &> /dev/null
+    done
+    echo "   * Needles inserted"
 }
 
 show_where_haystack_is_located()
