@@ -88,7 +88,9 @@ make_needle_number()
 	    chmod a-w ${FILENAME}
 	    ;;
 	2)
-	    echo "needle 2"
+	    FILENAME=$(select_file_randomly)
+	    echo "abcdefgh" > ${FILENAME}
+	    chmod a+x ${FILENAME}
 	    ;;
 	3)
 	    echo "needle 3"
