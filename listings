@@ -1,0 +1,32 @@
+#!/bin/bash
+
+main()
+{
+    show_description
+    create_directory_structure
+    show_the_expected_listings
+}
+
+show_description()
+{
+cat <<EOF
+    = Listings =
+    This exercise will create a directory structure with files.
+    Your goal is then to execute the ls command in such a way that the
+    output matches the expected outputs in the different files shown
+    below.
+
+EOF
+}
+
+create_directory_structure()
+{
+    echo "Created directory structure"
+}
+
+show_the_expected_listings()
+{
+    echo "Show the expected listings"
+}
+
+main
