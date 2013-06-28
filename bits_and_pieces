@@ -1,0 +1,17 @@
+#!/bin/bash
+
+main()
+{
+	show_description
+}
+
+show_description()
+{
+cat <<EOF
+    = Bits and Pieces =
+    This exercise practices substring extraction and string manipulation.
+    You are expected to complete the exercise, by using tr | cut | sed | grep.
+EOF
+}
+
+main
