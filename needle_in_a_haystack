@@ -54,7 +54,7 @@ build_haystack()
 	done
     done
     popd &> /dev/null
-    echo "   * Built haystack"
+    echo "    * Built haystack"
 }
 
 make_hay_straw()
@@ -82,7 +82,7 @@ insert_needles()
 	done
 	popd &> /dev/null
     done
-    echo "   * Needles inserted"
+    echo "    * Needles inserted"
 }
 
 make_needle_number()
@@ -118,7 +118,7 @@ select_file_randomly()
 
 show_where_haystack_is_located()
 {
-    echo "showing"
+    echo "    * Haystack located at ${ROOT}"
 }
 
 main
