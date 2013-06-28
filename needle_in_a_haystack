@@ -60,7 +60,7 @@ build_haystack()
 make_hay_straw()
 {
     FILENAME=$(mktemp --tmpdir=${1})
-    dd if=/dev/urandom of=${FILENAME} bs=1 count=$((${RANDOM} % 100 + 10)) &> /dev/null
+    dd if=/dev/urandom of=${FILENAME} bs=1 count=$((${RANDOM} % 100)) &> /dev/null
 }
 
 insert_needles()
