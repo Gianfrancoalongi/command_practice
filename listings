@@ -24,8 +24,17 @@ EOF
 create_directory_structure_with_files()
 {
     ROOT=$(mktemp -d --tmpdir=.)
-    mkdir -p ${ROOT}/{a,b,c}{a,b,c}{a,b,c} &> /dev/null
-    touch ${ROOT}/{a,b,c}{a,b,c}{a,b,c}/{a,b,c}{a,b,c}{a,b,c}.txt &> /dev/null
+    mkdir -p ${ROOT}/{a,b,c} &> /dev/null
+    mkdir -p ${ROOT}/{a,b,c}{a,b,c} &> /dev/null
+    
+    touch ${ROOT}/{a,b,c}/{a,b,c}.txt &> /dev/null
+    touch ${ROOT}/{a,b,c}/{a,b,c}{a,b,c}.txt &> /dev/null
+    touch ${ROOT}/{a,b,c}/{a,b,c}{a,b,c}{a,b,c}.txt &> /dev/null
+    
+    touch ${ROOT}/{a,b,c}{a,b,c}/{a,b,c}.txt &> /dev/null
+    touch ${ROOT}/{a,b,c}{a,b,c}/{a,b,c}{a,b,c}.txt &> /dev/null
+    touch ${ROOT}/{a,b,c}{a,b,c}/{a,b,c}{a,b,c}{a,b,c}.txt &> /dev/null
+    
 }
 
 create_expected_listings()
