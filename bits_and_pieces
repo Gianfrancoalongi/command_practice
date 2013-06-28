@@ -24,14 +24,17 @@ dump_text_to_files()
 create_service_example_file()
 {
     FILE=${ROOT}/service.xmpl
-    echo 'user:adam runtime:2h-23m-21s from:192.168.0.1 services:call,bridge' >> ${FILE}
-    echo 'user:david runtime:0h-2m-10s from:192.169.0.2 services:call,bridge' >> ${FILE}
-    echo 'user:john runtime:1h-3m-1s from:192.169.0.3 services:call' >> ${FILE}
-    echo 'user:filip runtime:2h-4m-45s from:192.168.0.4 services:call,bridge,conference' >> ${FILE}
-    echo 'user:susan runtime:3h-34m-28s from:192.165.0.3 services:call,music' >> ${FILE}
-    echo 'user:ellie runtime:5h-43m-49s from:192.165.0.2 services:call,music,conference' >> ${FILE}
-    echo 'user:michelle runtime:1h-23m-21s from:192.165.0.1 services:call' >> ${FILE}
-    
+    DATA=( 'adam|2h-23m-21s|192.168.0.1|call,bridge' \
+	'david|0h-2m-10s|192.169.0.2|call,bridge' \
+	'john|1h-3m-1s|192.169.0.3|call' \
+	'filip|2h-4m-45s|192.168.0.4|call,bridge,conference' \
+	'susan|3h-34m-28s|192.165.0.3|call,music' \
+	'ellie|5h-43m-49s|192.165.0.2|call,music,conference' \
+	'michelle|1h-23m-21s|192.165.0.1|call' )	
+    for data in ${DATA[*]}
+    do
+	echo ${data} | tr '|' ' ' | xargs printf "user:%s runtime:%s from:%s services:%s\n" >> ${FILE}
+    done
 }
 
 main
