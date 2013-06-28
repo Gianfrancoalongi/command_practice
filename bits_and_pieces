@@ -24,17 +24,22 @@ dump_text_to_files()
 create_service_example_file()
 {
     FILE=${ROOT}/service.xmpl
-    DATA=( 'adam|2h-23m-21s|192.168.0.1|call,bridge' \
-	'david|0h-2m-10s|192.169.0.2|call,bridge' \
-	'john|1h-3m-1s|192.169.0.3|call' \
-	'filip|2h-4m-45s|192.168.0.4|call,bridge,conference' \
-	'susan|3h-34m-28s|192.165.0.3|call,music' \
-	'ellie|5h-43m-49s|192.165.0.2|call,music,conference' \
-	'michelle|1h-23m-21s|192.165.0.1|call' )	
+    DATA=( \
+	'adam_2h-23m-21s_192.168.0.1_call,bridge' \
+	'david_0h-2m-10s_192.169.0.2_call,bridge' \
+	'john_1h-3m-1s_192.169.0.3_call' \
+	'filip_2h-4m-45s_192.168.0.4_call,bridge,conference' \
+	'susan_3h-34m-28s_192.165.0.3_call,music' \
+	'ellie_5h-43m-49s_192.165.0.2_call,music,conference' \
+	'michelle_1h-23m-21s_192.165.0.1_call' \
+ 	)
+    OLD_IFS=${IFS}
     for data in ${DATA[*]}
     do
-	echo ${data} | tr '|' ' ' | xargs printf "user:%s runtime:%s from:%s services:%s\n" >> ${FILE}
+	IFS='_'
+	printf "user:%s runtime:%s from:%s services:%s\n" ${data} >> ${FILE}
     done
+    IFS=${OLD_IFS}
 }
 
 main
