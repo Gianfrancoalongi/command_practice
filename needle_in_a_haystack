@@ -98,7 +98,8 @@ make_needle_number()
 	    chmod a=r ${FILENAME}
 	    ;;
 	4)
-	    echo "needle 4"
+	    FILENAME=$(select_file_randomly)
+	    echo $(basename ${FILENAME}) > ${FILENAME}
 	    ;;
     esac
 }
