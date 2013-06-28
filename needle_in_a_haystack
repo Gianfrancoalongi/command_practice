@@ -19,15 +19,13 @@ cat <<EOF
 
     = Criterias =
     File 1:  not writeable
-	     has abba in the name
-             size ~ 10 B
+             size of 10 B
 
-    File 2:  it is executable
+    File 2:  is executable
 	     smaller than the first file
-	     has fish in the name.
 
     File 3:  contains the text 123
-	     has 321 as part of the name.
+             is read only
 
     File 4:  contains the name of the file 
 
