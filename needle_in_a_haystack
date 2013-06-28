@@ -41,17 +41,20 @@ build_haystack()
     do
 	make_hay_straw .
 	mktemp --tmpdir=. -d &> /dev/null
-	for i in tmp*/
+    done
+    for i in tmp*/
+    do
+	pushd ${i} &> /dev/null
+	for i in {1..10}	
 	do
-	    pushd ${i} &> /dev/null
 	    make_hay_straw .
 	    NR=$(mktemp --tmpdir=. -d)
-	    for i in {1..10}
+	    for j in {1..10}
 	    do
 		make_hay_straw ${NR}
 	    done
-	    popd &> /dev/null
 	done
+	popd &> /dev/null
     done
     popd &> /dev/null
     echo "    * Built haystack"
