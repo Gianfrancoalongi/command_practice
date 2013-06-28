@@ -3,8 +3,10 @@
 main()
 {
     show_description
-    create_directory_structure
+    create_directory_structure_with_files
+    create_expected_listings
     show_the_expected_listings
+    show_where_the_directory_structure_is_located
 }
 
 show_description()
@@ -19,14 +21,26 @@ cat <<EOF
 EOF
 }
 
-create_directory_structure()
+create_directory_structure_with_files()
 {
-    echo "Created directory structure"
+    ROOT=$(mktemp -d --tmpdir=.)
+    mkdir -p ${ROOT}/{a,b,c}{a,b,c}{a,b,c} &> /dev/null
+    touch ${ROOT}/{a,b,c}{a,b,c}{a,b,c}/{a,b,c}{a,b,c}{a,b,c}.txt &> /dev/null
+}
+
+create_expected_listings()
+{
+    echo "     Created expected listings"
 }
 
 show_the_expected_listings()
 {
-    echo "Show the expected listings"
+    echo "    Show the expected listings"
+}
+
+show_where_the_directory_structure_is_located()
+{
+    echo "    Directory to run listings on ${ROOT}"
 }
 
 main
