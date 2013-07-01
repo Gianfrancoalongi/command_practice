@@ -81,12 +81,11 @@ create_moving_target_example_file()
     OLD_IFS=${IFS}
     for data in ${DATA[*]}
     do
-	IFS='_'
-	for i in ${data[*]}
-	do
-	    printf "%s%s" ${i} $(random_amount_of_separators) >> ${FILE}
+	for i in {1..4}
+	do 
+	    data=${data/_/$(random_amount_of_separators)}
 	done
-	printf "\n" >> ${FILE}
+	echo ${data} >> ${FILE}
     done
 }
 
