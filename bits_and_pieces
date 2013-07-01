@@ -104,7 +104,29 @@ random_amount_of_separators()
 
 describe_expected_pickings()
 {
-    echo 'description here!!!!!!'
+cat <<EOF
+
+    = What you should do =
+    Use tr | grep | cut | sed to achieve the following
+    on the files according to their description.
+
+    extract.xmpl
+     I want you to give me a corrected version where
+     the new format is name and time separated by space
+       ${NAME} ${TIME} 
+   
+    moving.xmpl
+     I want you to replace the sequences of dashes (-) 
+     by one space. Thus 1223-------211 would become
+     1223 211
+
+    service.xmpl
+     I want you to align all columns and remove the
+     user:-/runtime:/from: and services: parts
+
+    The files can be found in ${ROOT}
+
+EOF
 }
 
 main
