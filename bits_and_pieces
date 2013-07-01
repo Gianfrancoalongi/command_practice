@@ -4,6 +4,7 @@ main()
 {
 	show_description
 	dump_text_to_files
+	describe_expected_pickings
 }
 
 show_description()
@@ -99,6 +100,11 @@ random_amount_of_separators()
 	RET=${RET}${SEP}
     done
     echo ${RET}
+}
+
+describe_expected_pickings()
+{
+    echo 'description here!!!!!!'
 }
 
 main
